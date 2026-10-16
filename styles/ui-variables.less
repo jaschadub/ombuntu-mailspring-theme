@@ -1,52 +1,82 @@
 /*
-Include the standard variables from Mailspring's base theme:
+Tokyo Night, the default Ombuntu theme. Colors come from Omarchy's
+themes/tokyo-night/colors.toml, plus the darker and lighter backgrounds of the
+Tokyo Night palette for sidebars, inputs and selections.
+
+Base variables:
 https://github.com/Foundry376/Mailspring/blob/master/app/static/style/base/ui-variables.less
 */
 @import "base/ui-variables";
 
+// Tokyo Night
+@tn-bg: #1a1b26;           // colors.toml background
+@tn-bg-dark: #16161e;      // sidebars, toolbars
+@tn-bg-raised: #24283b;    // inputs, list rows
+@tn-bg-highlight: #292e42; // menus, hover
+@tn-border: #2f3549;
+@tn-muted: #565f89;        // comments, read mail
+@tn-fg: #a9b1d6;           // colors.toml foreground
+@tn-fg-bright: #c0caf5;    // colors.toml cursor
+@tn-blue: #7aa2f7;         // colors.toml accent
+@tn-purple: #bb9af7;
+@tn-red: #f7768e;
+@tn-yellow: #e0af68;
+@tn-green: #9ece6a;
+
+// Mailspring's dark themes invert the gray scale: "white" is the darkest color.
 @gray-base: #ffffff;
 @gray-darker: darken(@gray-base, 13.5%);
 @gray-dark: darken(@gray-base, 20%);
 @gray: darken(@gray-base, 33.5%);
 @gray-light: darken(@gray-base, 46.7%);
 @gray-lighter: darken(@gray-base, 92.5%);
-@white: #0a0a0a;
+@white: @tn-bg-dark;
 
-@accent-primary: #58b660;
-@accent-primary-dark: darken(@accent-primary, 10%);
+// A fixed accent rather than var(--system-accent), so LESS can derive shades from it.
+@accent-primary: @tn-blue;
+@accent-primary-dark: darken(@tn-blue, 10%);
+@component-active-color: @tn-blue;
 
-@background-primary: #212121;
-@background-off-primary: #212121;
-@background-secondary: #121212;
-@background-tertiary: #6d7987;
+@background-primary: @tn-bg;
+@background-off-primary: @tn-bg;
+@background-secondary: @tn-bg-dark;
+@background-tertiary: @tn-muted;
 
-@border-color-primary: lighten(@background-primary, 10%);
-@border-color-secondary: lighten(@background-secondary, 10%);
-@border-color-tertiary: lighten(@background-tertiary, 10%);
+@border-color-primary: @tn-border;
+@border-color-secondary: lighten(@tn-bg-dark, 8%);
+@border-color-tertiary: lighten(@tn-muted, 10%);
 @border-color-divider: @border-color-secondary;
 
-@text-color: #eee;
+@text-color: @tn-fg;
 @text-color-subtle: fadeout(@text-color, 20%);
 @text-color-very-subtle: fadeout(@text-color, 40%);
-@text-color-inverse: white;
+@text-color-inverse: @tn-fg-bright;
 @text-color-inverse-subtle: fadeout(@text-color-inverse, 20%);
 @text-color-inverse-very-subtle: fadeout(@text-color-inverse, 50%);
-@text-color-heading: #fff;
+@text-color-heading: @tn-fg-bright;
+@component-active-bg: @text-color;
 
-@text-color-link: @accent-primary;
-@text-color-link-hover: @accent-primary-dark;
+@text-color-link: @tn-blue;
+@text-color-link-hover: lighten(@tn-blue, 8%);
 @text-color-link-active: @accent-primary-dark;
 
-@btn-default-bg-color: lighten(@background-primary, 5%);
-@dropdown-default-bg-color: #404040;
+@text-color-error: @tn-red;
+@text-color-warning: @tn-yellow;
+@text-color-success: @tn-green;
 
-@input-bg: #2e2e2e;
+@btn-default-bg-color: @tn-bg-raised;
+@btn-border-color: fadeout(@text-color, 65%);
+@dropdown-default-bg-color: @tn-bg-highlight;
+
+@input-bg: @tn-bg-raised;
 @input-border: @border-color-divider;
 
-@list-bg: #333;
-@list-border: #383838;
-@list-selected-color: @text-color-inverse;
-@list-focused-color: @text-color;
+@list-bg: @tn-bg-raised;
+@list-border: @tn-bg-highlight;
+@list-selected-color: @tn-fg-bright;
+// The focused row is solid accent blue. Alacritty's selection_foreground (#c0caf5) on it is
+// 1.7:1; its background color (#1a1b26) is about 7:1.
+@list-focused-color: @tn-bg;
 
-@toolbar-background-color: #121212;
-@panel-background-color: #121212;
+@toolbar-background-color: @tn-bg-dark;
+@panel-background-color: @tn-bg-dark;
